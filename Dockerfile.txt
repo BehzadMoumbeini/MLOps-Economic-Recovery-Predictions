@@ -1,0 +1,18 @@
+# Use a base image with Python 3
+FROM python:3.8-slim
+
+# Set working directory
+WORKDIR /app
+
+# Install required packages
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the entire application into the container
+COPY . /app/
+
+# Expose the port
+EXPOSE 5000
+
+# Define entrypoint to run the application
+CMD ["python", "deploy_model.py"]
